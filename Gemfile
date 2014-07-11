@@ -45,5 +45,5 @@ group :development, :test do
 end
 
 gem 'feedjira'
-gem 'alchemy-api-rb', :require => 'alchemy_api'
+gem 'httparty'
 gem 'rails_12factor', group: :production
