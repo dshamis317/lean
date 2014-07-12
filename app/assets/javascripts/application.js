@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('.search').submit(function(e) {
+    e.preventDefault();
+    var userInput = $('.search_field');
+    var userText = userInput.val();
+    var topicList = $('.topics');
+    var topicID = topicList.val();
+    userInput.val('');
+    topicList.val('1');
+    getSearchData(userText, topicID);
+  })
+})
