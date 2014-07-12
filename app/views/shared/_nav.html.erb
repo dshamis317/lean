@@ -7,7 +7,10 @@
     <% if current_user %>
       <div class="user">
         <h4>Logged in as <%= current_user.email %></h4>
-        <%= link_to "Log Out", logout_path, method: :delete %>
+        <div class="links">
+          <%= link_to "Profile", profile_path %>
+          <%= link_to "Log Out", logout_path, method: :delete %>
+        </div>
       </div>
     <% else %>
       <div class="not_user">
