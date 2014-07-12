@@ -6,7 +6,13 @@ function getSearchData(userInput, topicId) {
     method: 'post',
     data: {search: input, topics: topicId},
     dataType: 'json',
+    beforeSend: function() {
+      $('.load').show();
+    },
     success: function(data) {
+      $('.load').hide();
+      $('.search_field').val('');
+      $('.topics').val('1')
       console.log(data)
     }
   })

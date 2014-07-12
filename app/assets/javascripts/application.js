@@ -18,12 +18,8 @@
 $(function() {
   $('.search').submit(function(e) {
     e.preventDefault();
-    var userInput = $('.search_field');
-    var userText = userInput.val();
-    var topicList = $('.topics');
-    var topicID = topicList.val();
-    userInput.val('');
-    topicList.val('1');
+    var userText = $('.search_field').val();
+    var topicID = $('.topics').val();
     getSearchData(userText, topicID);
   })
 })
