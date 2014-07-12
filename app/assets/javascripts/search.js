@@ -7,7 +7,7 @@ function getSearchData(userInput, topicId) {
     data: {search: input, topics: topicId},
     dataType: 'json',
     beforeSend: function() {
-      $('.load').show();
+      $('.load').fadeIn();
     },
     success: function(data) {
       $('.load').hide();

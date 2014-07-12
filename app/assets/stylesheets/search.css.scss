@@ -6,6 +6,16 @@
   text-align: center;
 }
 
+.user_search_title {
+  display: none;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+
+  #term {
+    text-transform: capitalize;
+  }
+}
+
 .load {
   display: none;
   text-align: center;
