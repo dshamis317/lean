@@ -1,0 +1,18 @@
+<% if @user.errors.any? %>
+  <h4>The form has <%= pluralize(@user.errors.count, "error") %>.</h4>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user, url: {action: "create"}, html: {class: "new_user_form"} do |f| %>
+  <%= f.label "Email Address:" %>
+  <%= f.text_field :email %>
+  <%= f.label "Password:" %>
+  <%= f.password_field :password %>
+  <%= f.label "Password Confirmation:" %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit "Create" %>
+<% end %>
