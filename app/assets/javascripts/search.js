@@ -43,7 +43,7 @@ function parseSearchData(array) {
                    .append($i);
   var $span = $('<span>').append($siteLinkA);
   var $h5 = $('<h5>').addClass('search_description')
-                     .html('Updated: ' + array.modified);
+                     .html('Updated: ' + new Date(array.modified));
   $h3.append($tooltipA);
   $h3.append($span);
   $div.append($h3)
