@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new', as: 'signup'
   post '/users' => 'users#create', as: 'users'
-  get '/profile' => 'users#profile', as: 'profile'
+  get '/profile/:id' => 'users#profile', as: 'profile'
 end
