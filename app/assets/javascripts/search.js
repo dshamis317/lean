@@ -14,8 +14,7 @@ function getSearchData(userInput, topicId) {
       $('.search_field').val('');
       $('.topics').val(topicId);
       var scores = getSentimentScores(data);
-      debugger;
-      // renderDataChart(scores);
+      renderDataChart(scores);
       renderSearchData(data);
     }
   })
