@@ -31,8 +31,9 @@ function parseSearchData(array) {
   var $div = $('<div>').addClass('search_div');
   var $h3 = $('<h3>').addClass('search_title')
                      .html(array.title + "  ");
-  var $i = $('<i>').addClass('fa fa-share fa-lg');
+  var $i = $('<i>').addClass('fa fa-share');
   var $a = $('<a>').attr('href', array.site_url)
+                   .attr('target', '_blank')
                    .append($i);
   var $span = $('<span>').append($a);
   var $h5 = $('<h5>').addClass('search_description')
@@ -41,26 +42,37 @@ function parseSearchData(array) {
   $div.append($h3)
       .append($h5);
 
-  var stories = array.stories;
+  var $storyDiv = parseStories(array.stories)
+  $div.append($storyDiv);
+  return $div;
+}
+
+function parseStories(array) {
+  var stories = array;
+  var $storyDiv = $('<div>').addClass('stories');
   if (stories.length > 0) {
     for (var j = 0; j < stories.length; j++) {
-      var $storyDiv = $('<div>').addClass('stories');
       var $ul = $('<ul>').addClass('story_list')
                          .appendTo($storyDiv);
       var $storyA = $('<a>').attr('href', stories[j].story_url)
+                            .attr('target', '_blank')
                             .html(stories[j].title);
-      var sentiment = $('<p>').html(' Sentiment: ' + stories[j].sentiment_type);
+      var sentimentScore = Math.round((parseFloat(stories[j].sentiment_score) + 1) * 50);
+      var sentiment = $('<p>').addClass('sentiment')
+                              .html('Sentiment Score: ' + sentimentScore +'/100 = ');
+      var sentSpan = $('<span>').addClass('sentiment_type')
+                                .html(stories[j].sentiment_type);
+      sentiment.append(sentSpan)
       var $li = $('<li>').addClass('story')
                          .append($storyA)
                          .append(sentiment)
                          .appendTo($ul);
-      $div.append($storyDiv);
+      $storyDiv.append($ul);
     }
   } else {
-    var $storyDiv = $('<div>').addClass('stories');
     var $p = $('<p>').html('Nothing to see here, check back later...')
                      .appendTo($storyDiv);
-    $div.append($storyDiv);
+    $storyDiv.append($p);
   }
-  return $div;
+  return $storyDiv
 }
