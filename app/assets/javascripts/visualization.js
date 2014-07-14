@@ -22,3 +22,7 @@ function makeSentimentCircle(sentimentScore) {
   }
   return $canvas
 }
+
+function renderDataChart(data) {
+
+}

@@ -15,6 +15,7 @@ function getSearchData(userInput, topicId) {
       $('.topics').val(topicId);
       var scores = getSentimentScores(data);
       debugger
+      // renderDataChart(scores);
       renderSearchData(data);
     }
   })
@@ -87,7 +88,12 @@ function parseStories(array) {
 
 function getSentimentScores(array) {
   var data = {};
+  data['labels'] = [];
+  data['datasets'] = {};
+  data['datasets']['data'] = [];
+
   $.each(array, function(idx, datum) {
+    data['labels'].push(datum.title)
     var stories = datum.stories;
     if (stories.length > 0) {
       var scores = [];
@@ -100,7 +106,9 @@ function getSentimentScores(array) {
         sum += num;
         counter ++;
       })
-      data[datum.title] = sum/counter;
+      data['datasets']['data'].push(sum/counter);
+    } else {
+      data['datasets']['data'].push(parseInt(0));
     }
   })
   return data;
