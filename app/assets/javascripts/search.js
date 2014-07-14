@@ -29,10 +29,11 @@ function renderSearchData(array) {
   }
 }
 
+$( document ).tooltip();
+
 function parseSearchData(array) {
   var $div = $('<div>').addClass('search_div');
-  var $h3 = $('<h3>').addClass('search_title')
-                     // .html(array.title + "  ");
+  var $h3 = $('<h3>').addClass('search_title');
   var $tooltipA = $('<a>').attr('title', array.description)
                           .attr('href', '#')
                           .html(array.title + "  ");
@@ -95,3 +96,4 @@ function getSentimentScores(array) {
   })
   return scores;
 }
+
