@@ -32,14 +32,18 @@ function renderSearchData(array) {
 function parseSearchData(array) {
   var $div = $('<div>').addClass('search_div');
   var $h3 = $('<h3>').addClass('search_title')
-                     .html(array.title + "  ");
+                     // .html(array.title + "  ");
+  var $tooltipA = $('<a>').attr('title', array.description)
+                          .attr('href', '#')
+                          .html(array.title + "  ");
   var $i = $('<i>').addClass('fa fa-share');
-  var $a = $('<a>').attr('href', array.site_url)
+  var $siteLinkA = $('<a>').attr('href', array.site_url)
                    .attr('target', '_blank')
                    .append($i);
-  var $span = $('<span>').append($a);
+  var $span = $('<span>').append($siteLinkA);
   var $h5 = $('<h5>').addClass('search_description')
-                     .html(array.description + ' Updated: ' + array.modified);
+                     .html('Updated: ' + array.modified);
+  $h3.append($tooltipA);
   $h3.append($span);
   $div.append($h3)
       .append($h5);
