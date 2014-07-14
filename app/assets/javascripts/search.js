@@ -14,6 +14,7 @@ function getSearchData(userInput, topicId) {
       $('.search_field').val('');
       $('.topics').val(topicId);
       var scores = getSentimentScores(data);
+      debugger
       renderSearchData(data);
     }
   })
@@ -85,15 +86,23 @@ function parseStories(array) {
 }
 
 function getSentimentScores(array) {
-  var scores = [];
+  var data = {};
   $.each(array, function(idx, datum) {
     var stories = datum.stories;
     if (stories.length > 0) {
+      var scores = [];
       $.each(stories, function(id, elem) {
-        scores.push(elem.sentiment_score);
+        scores.push((parseFloat(elem.sentiment_score) + 1) *50);
       })
+      var counter = 0;
+      var sum = 0;
+      $.each(scores, function(i, num) {
+        sum += num;
+        counter ++;
+      })
+      data[datum.title] = sum/counter;
     }
   })
-  return scores;
+  return data;
 }
 
