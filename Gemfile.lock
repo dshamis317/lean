@@ -40,7 +40,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.1)
-    commonjs (0.2.7)
     curb (0.8.5)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -51,8 +50,8 @@ GEM
       curb (~> 0.8.1)
       loofah (~> 2.0.0)
       sax-machine (~> 0.2.1)
-    font-awesome-less (4.1.0)
-      less (~> 2.4.0)
+    font-awesome-sass (4.1.0)
+      sass (~> 3.2)
     hike (1.2.3)
     httparty (0.13.1)
       json (~> 1.8)
@@ -66,8 +65,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     jwt (1.0.0)
-    less (2.4.0)
-      commonjs (~> 0.2.7)
     loofah (2.0.0)
       nokogiri (>= 1.5.9)
     mail (2.5.4)
@@ -181,7 +178,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   feedjira
-  font-awesome-less
+  font-awesome-sass
   httparty
   jbuilder (~> 2.0)
   jquery-rails

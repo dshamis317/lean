@@ -47,5 +47,5 @@ end
 gem 'sorcery'
 gem 'feedjira'
 gem 'httparty'
-gem 'font-awesome-less'
+gem 'font-awesome-sass'
 gem 'rails_12factor', group: :production
