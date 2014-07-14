@@ -13,6 +13,7 @@ function getSearchData(userInput, topicId) {
       $('.load').hide();
       $('.search_field').val('');
       $('.topics').val(topicId);
+      var scores = getSentimentScores(data);
       renderSearchData(data);
     }
   })
@@ -24,6 +25,7 @@ function renderSearchData(array) {
   for (var i = 0; i < array.length; i++) {
     var $div = parseSearchData(array[i]);
     $results.append($div)
+    $results.fadeIn();
   }
 }
 
@@ -59,7 +61,7 @@ function parseStories(array) {
                             .html(stories[j].title);
       var sentimentScore = Math.round((parseFloat(stories[j].sentiment_score) + 1) * 50);
       var sentiment = $('<p>').addClass('sentiment')
-                              .html('Sentiment Score: ' + sentimentScore +'/100 = ');
+                              .html('Sentiment Score: ' + sentimentScore +'% = ');
       var sentSpan = $('<span>').addClass('sentiment_type')
                                 .html(stories[j].sentiment_type);
       sentiment.append(sentSpan)
@@ -75,4 +77,17 @@ function parseStories(array) {
     $storyDiv.append($p);
   }
   return $storyDiv
+}
+
+function getSentimentScores(array) {
+  var scores = [];
+  $.each(array, function(idx, datum) {
+    var stories = datum.stories;
+    if (stories.length > 0) {
+      $.each(stories, function(id, elem) {
+        scores.push(elem.sentiment_score);
+      })
+    }
+  })
+  return scores;
 }
