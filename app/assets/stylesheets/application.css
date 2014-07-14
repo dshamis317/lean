@@ -17,5 +17,6 @@
  */
 
 body {
-  width: 100%
+  width: 100%;
+  background: url('../assets/lined_paper.png');
 }
