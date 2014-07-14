@@ -1,0 +1,29 @@
+{
+	"name": "Mambo",
+	"version": "0.5.1",
+	"title": "jQuery Mambo, easy canvas rounded badges",
+	"author": {
+		"name": "Valerio Barrila",
+		"email": "valerio.barrila@gmail.com",
+		"url": "http://valeriobarrila.com"
+	},
+	"dependencies": {
+		"jquery": "1.8"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://opensource.org/licenses/MIT"
+		}
+	],
+	"description": "Mambo is a MIT licensed jQuery plugin that let you easily create rounded badges using canvas. You could use it for creating colorful badges with labels, display percentages or both. It was created because I wanted to avoid the mess of using images made ad-hoc for displaying 'percentage badges' and as an excuse to start playing with canvas!",
+	"keywords": ["badge", "percentage", "canvas", "chart", "round"],
+	"homepage": "http://valeriobarrila.com/mambo.html",
+	"docs": "http://www.valeriobarrila.com/mambo.html#usage",
+	"demo": "http://www.valeriobarrila.com/mambo.html#examples",
+	"maintaners": [{
+		"name": "Valerio Barrila",
+		"email": "valerio.barrila@gmail.com",
+		"url": "http://valeriobarrila.com"
+	}]
+}

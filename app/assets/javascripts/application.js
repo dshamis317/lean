@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require turbolinks
+//= require jquery.mambo
 //= require_tree .
 
 $(function() {

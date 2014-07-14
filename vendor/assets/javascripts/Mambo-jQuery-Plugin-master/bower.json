@@ -1,0 +1,10 @@
+{
+  "name": "jquery-mambo",
+  "version": "0.5.0",
+  "main": [
+    "jquery.mambo.min.js"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.8"
+  }
+}

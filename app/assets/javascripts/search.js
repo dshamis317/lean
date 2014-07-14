@@ -69,10 +69,30 @@ function parseStories(array) {
                               .html('Sentiment Score: ' + sentimentScore +'% = ');
       var sentSpan = $('<span>').addClass('sentiment_type')
                                 .html(stories[j].sentiment_type);
+      var $canvas = $('<canvas>').addClass('sentiment_visual')
+                                     .attr('width', 52)
+                                     .attr('height', 52)
+                                     .width(52)
+                                     .height(52)
+
+      $canvas.mambo({
+        percentage: sentimentScore,
+        // label: "Stmnt",
+        // displayValue: true,
+        // labelColor: "#ccc",
+        // circleColor: '#5965E5',
+        // circleBorder: '#282D66',
+        // ringStyle: "full",
+        // ringBackground: "#999EDD",
+        // ringColor: "#393F90",
+        drawShadow: true
+      })
+
       sentiment.append(sentSpan)
       var $li = $('<li>').addClass('story')
                          .append($storyA)
                          .append(sentiment)
+                         .append($canvas)
                          .appendTo($ul);
       $storyDiv.append($ul);
     }
