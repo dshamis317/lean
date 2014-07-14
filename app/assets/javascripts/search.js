@@ -30,12 +30,15 @@ function renderSearchData(array) {
 function parseSearchData(array) {
   var $div = $('<div>').addClass('search_div');
   var $h3 = $('<h3>').addClass('search_title')
-                     .html(array.title);
-  var $a = $('<a>').attr('href', array.site_url);
+                     .html(array.title + "  ");
+  var $i = $('<i>').addClass('fa fa-share fa-lg');
+  var $a = $('<a>').attr('href', array.site_url)
+                   .append($i);
+  var $span = $('<span>').append($a);
   var $h5 = $('<h5>').addClass('search_description')
                      .html(array.description + ' Updated: ' + array.modified);
-  $a.append($h3);
-  $div.append($a)
+  $h3.append($span);
+  $div.append($h3)
       .append($h5);
 
   var stories = array.stories;
