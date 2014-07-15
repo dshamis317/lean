@@ -19,6 +19,8 @@
 //= require_tree .
 
 $(function() {
+  visualInitializers();
+
   $('.search').submit(function(e) {
     e.preventDefault();
     $('#term').html('');

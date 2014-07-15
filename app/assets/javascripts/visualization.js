@@ -90,7 +90,6 @@ function renderSearchChart(data) {
           .attr("height", function(d) { return height - y(d.value); })
           .attr("fill", function(d) { return color(d.value) });
   });
-
 }
 
 function type(d) {
@@ -120,4 +119,14 @@ function wrap(text, width) {
       }
     }
   });
+}
+
+function visualInitializers() {
+  $('.title').hover(function() {
+    $(this).addClass('animated swing');
+  }, function() {
+    $(this).removeClass('animated swing');
+  });
+
+
 }
