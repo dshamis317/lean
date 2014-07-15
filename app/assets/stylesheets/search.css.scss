@@ -35,8 +35,7 @@
       font: 10px 'Cantarell', sans-serif;
     }
 
-    .axis path,
-    .axis line {
+    .axis path, .axis line {
       fill: none;
       stroke: #000;
       shape-rendering: crispEdges;
@@ -68,3 +67,8 @@
     margin-top: -68px;
   }
 }
+
+.historical_chart {
+  display: none;
+}
+

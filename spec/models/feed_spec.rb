@@ -15,12 +15,6 @@ describe Feed do
       @end
     end
 
-    it 'responds successfully' do
-      actual = response.code
-      expected = '200'
-      expect(actual).to eq(expected)
-    end
-
     it 'returns urls' do
       actual = Feed.get_feed_urls(@sports.id)
       expected = ["http://www.espn.com"]
