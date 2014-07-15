@@ -17,7 +17,7 @@ function getSearchData(userInput, topicId) {
       saveSentimentScoresToDB(input, topicId, scores);
       // renderSearchChart(scores);
       // renderSearchData(data);
-      // renderHistoricalData(input, topicID);
+      getHistoricalData(input, topicId);
     }
   })
 }
@@ -119,6 +119,19 @@ function saveSentimentScoresToDB(term, topicID, array) {
     dataType: 'json',
     success: function() {
       console.log('SAVED TO DB')
+    }
+  })
+}
+
+function getHistoricalData(term, topicID) {
+  var searchTerm = term;
+  var topic = topicID;
+  $.ajax({
+    url: '/history/' + searchTerm + '/' + topic,
+    dataType: 'json',
+    success: function(data) {
+      console.log(data);
+      // renderHistoricalData(data);
     }
   })
 }
