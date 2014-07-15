@@ -24,6 +24,37 @@
   font-style: italic;
 }
 
+.chart {
+  width: 100%;
+
+  svg {
+    margin: 0 auto;
+
+    .bar {
+      fill: steelblue;
+    }
+
+    .bar:hover {
+      fill: brown;
+    }
+
+    .axis {
+      font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+  }
+}
+
 .results {
   display: none;
   width: 800px;
