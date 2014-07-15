@@ -101,8 +101,6 @@ function getSentimentScores(array) {
         counter ++;
       })
       data.push({name: datum.title, value: sum/counter});
-    } else {
-      data.push({name: datum.title, value: 0});
     }
   })
   return data;
