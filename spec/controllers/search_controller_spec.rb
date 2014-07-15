@@ -31,7 +31,7 @@ describe SearchController do
 
     describe 'it can search' do
       before :each do
-        get :search, :search => 'Obama', :topic => '1'
+        post :search, :search => 'Obama', :topic => '1'
       end
 
       it 'responds successfully' do

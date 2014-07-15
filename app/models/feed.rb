@@ -1,6 +1,8 @@
 class Feed < ActiveRecord::Base
   belongs_to :topic
 
+  API_KEY = ENV.fetch('ALCHEMY')
+
   def self.get_feed_urls(id)
     db_feeds = Feed.where("topic_id = ?", id)
     urls = []
@@ -24,7 +26,7 @@ class Feed < ActiveRecord::Base
       source[:stories] = []
       feeds[key].entries.each do |feed|
         if feed.title.downcase.include?(search.downcase)
-          data = HTTParty.get("http://access.alchemyapi.com/calls/url/URLGetTextSentiment?apikey=e0f145265967a4aa21013b7107bf8a834dc9ffa2&url=#{feed.url}&outputMode=json&showSourceText=1")
+          data = HTTParty.get("http://access.alchemyapi.com/calls/url/URLGetTextSentiment?apikey=#{API_KEY}&url=#{feed.url}&outputMode=json&showSourceText=1")
           if data['text'].present?
             story = {}
             story[:title] = feed.title
