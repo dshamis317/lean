@@ -26,7 +26,6 @@ function makeSentimentCircle(sentimentScore) {
 function renderSearchChart(data) {
   var data = data;
 
-console.log(data)
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
       width = 1200 - margin.left - margin.right,
       height = 450 - margin.top - margin.bottom;
@@ -78,10 +77,6 @@ console.log(data)
         .style("text-anchor", "end")
         .text("Sentiment Level");
 
-
-
-
-
     svg.selectAll(".bar")
         .data(data)
       .enter().append("rect")
@@ -94,10 +89,6 @@ console.log(data)
           .duration(2000)
           .attr("height", function(d) { return height - y(d.value); })
           .attr("fill", function(d) { return color(d.value) });
-
-
-
-
   });
 
 }
