@@ -26,6 +26,7 @@ function makeSentimentCircle(sentimentScore) {
 function renderSearchChart(data) {
   var data = data;
 
+console.log(data)
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
       width = 1200 - margin.left - margin.right,
       height = 450 - margin.top - margin.bottom;
@@ -34,7 +35,6 @@ function renderSearchChart(data) {
       .rangeRoundBands([0, width], .1);
 
   var y = d3.scale.linear()
-      // .domain([1, 0])
       .range([height, 0]);
 
   var xAxis = d3.svg.axis()
@@ -46,9 +46,9 @@ function renderSearchChart(data) {
       .orient("left")
       .ticks(10, "%");
 
-  // var color = d3.scale.linear()
-  //     .domain([1, 0])
-  //     .range(["#FF0000", "#006600"]);
+  var color = d3.scale.linear()
+      .domain([1, 0])
+      .range(["#FF0000", "#006600"]);
 
   var svg = d3.select(".chart").append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -58,7 +58,8 @@ function renderSearchChart(data) {
 
   data.forEach(function(d) {
     x.domain(data.map(function(d) { return d.name; }));
-    y.domain([0, d3.max(data, function(d) { return d.value; })]);
+    // y.domain([0, d3.max(data, function(d) { return d.value; })]);
+    y.domain([0, 1]);
 
     svg.append("g")
         .attr("class", "x axis")
@@ -77,6 +78,10 @@ function renderSearchChart(data) {
         .style("text-anchor", "end")
         .text("Sentiment Level");
 
+
+
+
+
     svg.selectAll(".bar")
         .data(data)
       .enter().append("rect")
@@ -88,7 +93,10 @@ function renderSearchChart(data) {
         .transition()
           .duration(2000)
           .attr("height", function(d) { return height - y(d.value); })
-        // .attr("fill", function(d) { return color(d) });
+          .attr("fill", function(d) { return color(d.value) });
+
+
+
 
   });
 

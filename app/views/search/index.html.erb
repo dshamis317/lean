@@ -1,6 +1,7 @@
 <form action="/" method ="post" class="search">
   <%= token_tag %>
   <input type="text" class="search_field" name="search">
+  <label for="topics">Select a Topic</label>
   <select name="topics" class="topics">
     <% @topics.each do |topic| %>
     <option value="<%= topic.id %>"><%= topic.name %></option>
@@ -12,6 +13,11 @@
 <div class="user_search_title">
   <h3><span id="term"></span> in <span id="topic"></span></h3>
 </div>
+
+<form id="radio">
+    <input type="radio" id="d3" name="radio"><label for="d3">Visualization</label>
+    <input type="radio" id="articles" name="radio" checked="checked"><label for="articles">Articles</label>
+</form>
 
 <div class="load">
   <h3>Reading all these papers is hard work!</h3>
