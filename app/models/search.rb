@@ -14,4 +14,5 @@ class Search < ActiveRecord::Base
     end
     return formatted_scores
   end
+
 end

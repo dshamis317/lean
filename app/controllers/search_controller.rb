@@ -19,6 +19,6 @@ class SearchController < ApplicationController
     topic = params[:topic].to_i
     scores = params[:scores]
     score_data = Search.parse_sentiment_data(scores)
-    binding.pry
+
   end
 end
