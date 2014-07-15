@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715180202) do
+ActiveRecord::Schema.define(version: 20140715184551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,7 @@ ActiveRecord::Schema.define(version: 20140715180202) do
   add_index "feeds", ["topic_id"], name: "index_feeds_on_topic_id", using: :btree
 
   create_table "histories", force: true do |t|
-    t.string   "sentiment_type"
-    t.float    "sentiment_score"
+    t.float    "sentiment"
     t.integer  "feed_id"
     t.integer  "search_id"
     t.datetime "created_at"
@@ -39,13 +38,10 @@ ActiveRecord::Schema.define(version: 20140715180202) do
   add_index "histories", ["search_id"], name: "index_histories_on_search_id", using: :btree
 
   create_table "searches", force: true do |t|
-    t.integer  "user_id"
     t.string   "keyword"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "searches", ["user_id"], name: "index_searches_on_user_id", using: :btree
 
   create_table "topics", force: true do |t|
     t.string   "name"
