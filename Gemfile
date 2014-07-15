@@ -44,7 +44,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.2'
 end
 
-gem 'sorcery'
 gem 'feedjira'
 gem 'httparty'
 gem 'font-awesome-sass'
