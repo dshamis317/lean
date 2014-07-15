@@ -92,7 +92,7 @@ function getSentimentScores(array) {
     if (stories.length > 0) {
       var scores = [];
       $.each(stories, function(id, elem) {
-        scores.push((parseFloat(elem.sentiment_score) + 1) *50);
+        scores.push((parseFloat(elem.sentiment_score) + 1) *.5);
       })
       var counter = 0;
       var sum = 0;
