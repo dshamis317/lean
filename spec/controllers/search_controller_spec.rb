@@ -28,5 +28,18 @@ describe SearchController do
       end
 
     end # GET index
+
+    describe 'it can search' do
+      before :each do
+        get :search, :search => 'Obama', :topic => '1'
+      end
+
+      it 'responds successfully' do
+        actual = response.code
+        expected = '200'
+        expect(actual).to eq(expected)
+      end
+    end
   end
+
 end
