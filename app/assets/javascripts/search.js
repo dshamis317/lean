@@ -15,10 +15,10 @@ function getSearchData(userInput, topicId) {
       $('.search_field').val('');
       $('.topics').val(topicId);
       var scores = getSentimentScores(data);
-      saveSentimentScoresToDB(input, topicId, scores);
+      // saveSentimentScoresToDB(input, topicId, scores);
       renderSearchChart(scores);
-      renderSearchData(data);
-      getHistoricalData(input, topicId);
+      // renderSearchData(data);
+      // getHistoricalData(input, topicId);
     }
   })
 }
@@ -104,7 +104,10 @@ function getSentimentScores(array) {
         counter ++;
       })
       data.push({name: datum.title, value: sum/counter});
-    }
+      }
+    // } else {
+    //   data.push({name: datum.title, value: 0});
+    // }
   })
   return data;
 }
