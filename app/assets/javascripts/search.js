@@ -177,4 +177,5 @@ function automatedSearches() {
   setInterval(function() {
     getSearchData('facebook', 13)
   }, 21604000)
+
 }

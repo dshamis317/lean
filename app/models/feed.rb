@@ -27,13 +27,15 @@ class Feed < ActiveRecord::Base
       feeds[key].entries.each do |feed|
         if feed.title.downcase.include?(search.downcase)
           data = HTTParty.get("http://access.alchemyapi.com/calls/url/URLGetTextSentiment?apikey=#{API_KEY}&url=#{feed.url}&outputMode=json&showSourceText=1")
-          if data['text'].present?
-            story = {}
-            story[:title] = feed.title
-            story[:story_url] = feed.url
-            story[:sentiment_type] = data['docSentiment']['type']
-            story[:sentiment_score] = data['docSentiment']['score']
-            source[:stories] << story
+          if data
+            if data['text'].present?
+              story = {}
+              story[:title] = feed.title
+              story[:story_url] = feed.url
+              story[:sentiment_type] = data['docSentiment']['type']
+              story[:sentiment_score] = data['docSentiment']['score']
+              source[:stories] << story
+            end
           end
         end
       end
