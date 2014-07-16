@@ -14,11 +14,11 @@ function getSearchData(userInput, topicId) {
       $('.buttons').fadeIn();
       $('.search_field').val('');
       $('.topics').val(topicId);
-      var scores = getSentimentScores(data);
-      saveSentimentScoresToDB(input, topicId, scores);
-      renderSearchChart(scores);
-      renderSearchData(data);
-      // getHistoricalData(input, topicId);
+      // var scores = getSentimentScores(data);
+      // saveSentimentScoresToDB(input, topicId, scores);
+      // renderSearchChart(scores);
+      // renderSearchData(data);
+      getHistoricalData(input, topicId);
     }
   })
 }
@@ -143,7 +143,7 @@ function getHistoricalData(term, topicID) {
     dataType: 'json',
     success: function(data) {
       console.log(data);
-      // renderHistoricalData(data);
+      renderHistoricalData(data);
     }
   })
 }
