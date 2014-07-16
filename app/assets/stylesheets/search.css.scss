@@ -60,6 +60,24 @@
   padding: 20px;
   margin: 0 auto;
 
+  h3 {
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+
+    a {
+      color: black;
+    }
+  }
+
+  h5 {
+    font-family: 'Cantarell', sans-serif;
+    font-size: 10px;
+  }
+
+  .stories {
+    font-family: 'Cantarell', sans-serif;
+  }
+
   .search_title, .search_description {
     margin: 0;
   }
