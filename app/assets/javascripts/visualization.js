@@ -24,9 +24,6 @@ function makeSentimentCircle(sentimentScore) {
 }
 
 function renderSearchChart(data) {
-  console.log("RENDER SEARCH DATA!");
-  console.log(data);
-
   var data = data;
 
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -49,7 +46,7 @@ function renderSearchChart(data) {
   .ticks(10, "%");
 
   var color = d3.scale.linear()
-  .domain([1, 0])
+  .domain([0, 1])
   .range(["#FF0000", "#006600"]);
 
   var svg = d3.select("#chart").append("svg")
@@ -189,7 +186,7 @@ function renderHistoricalData(array) {
 
   var line = d3.svg.line()
   .interpolate("basis")
-      // .defined(function(d) { return d.y!=null; })
+      .defined(function(d) { return d.y!=0; })
       .x(function(d) { return x(d.date); })
       .y(function(d) { return y(d.sentiment); });
 
@@ -199,11 +196,8 @@ function renderHistoricalData(array) {
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
-  //TODO this whole thing is different from the example
   data.forEach(function(d) {
     color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
-    //FIXME Aldric goes o^O
     d.date = parseDate(d.date);
 
     var sites = color.domain().map(function(name) {

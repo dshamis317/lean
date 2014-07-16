@@ -31,6 +31,8 @@ $(function() {
     $('.user_search_title').fadeIn();
     getSearchData(userText, topicID);
   })
+
+  automatedSearches();
 })
 
 $( document ).tooltip();

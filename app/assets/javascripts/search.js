@@ -10,14 +10,13 @@ function getSearchData(userInput, topicId) {
       $('.load').fadeIn();
     },
     success: function(data) {
+      // data => { scores: [], other_stuff: [], historical_data: [] }
       $('.load').hide();
       $('.buttons').fadeIn();
       $('.search_field').val('');
       $('.topics').val(topicId);
       $('#results').show();
       var scores = getSentimentScores(data);
-      console.log(scores)
-      console.log(data)
       saveSentimentScoresToDB(input, topicId, scores);
       renderSearchChart(scores);
       renderSearchData(data);
@@ -156,4 +155,26 @@ function clearPageData() {
   $('#chart').html('').hide();
   $('#historical_chart').html('').hide();
   $('.buttons').hide();
+}
+
+function automatedSearches() {
+  setInterval(function() {
+    getSearchData('obama', 11)
+  }, 21600000);
+
+  setInterval(function() {
+    getSearchData('kardashian', 12)
+  }, 21601000)
+
+  setInterval(function() {
+    getSearchData('lebron', 15)
+  }, 21602000);
+
+  setInterval(function() {
+    getSearchData('google', 13)
+  }, 21603000)
+
+  setInterval(function() {
+    getSearchData('facebook', 13)
+  }, 21604000)
 }

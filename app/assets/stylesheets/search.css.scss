@@ -37,6 +37,10 @@
     display: block;
     margin: 0 auto;
 
+    .bar:hover {
+      fill: steelblue;
+    }
+
     .axis {
       font: 10px 'Cantarell', sans-serif;
     }
@@ -56,9 +60,10 @@
 #results {
   display: none;
   width: 800px;
-  border: 1px solid black;
-  padding: 20px;
+  border: 2px solid black;
+  padding: 30px;
   margin: 0 auto;
+  box-shadow: 5px gray;
 
   h3 {
     font-family: 'Lato', sans-serif;
