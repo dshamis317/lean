@@ -16,6 +16,8 @@ function getSearchData(userInput, topicId) {
       $('.topics').val(topicId);
       $('#results').show();
       var scores = getSentimentScores(data);
+      console.log(scores)
+      console.log(data)
       saveSentimentScoresToDB(input, topicId, scores);
       renderSearchChart(scores);
       renderSearchData(data);
@@ -33,8 +35,6 @@ function renderSearchData(array) {
     // $results.fadeIn();
   }
 }
-
-$( document ).tooltip();
 
 function parseSearchData(array) {
   var $div = $('<div>').addClass('search_div');

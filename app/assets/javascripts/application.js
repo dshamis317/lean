@@ -21,7 +21,7 @@
 $(function() {
   visualInitializers();
 
-  $('.search').submit(function(e) {
+  $('.search').on('submit', function(e) {
     e.preventDefault();
     clearPageData();
     var userText = $('.search_field').val();
@@ -32,3 +32,5 @@ $(function() {
     getSearchData(userText, topicID);
   })
 })
+
+$( document ).tooltip();

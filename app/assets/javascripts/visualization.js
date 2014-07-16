@@ -24,6 +24,9 @@ function makeSentimentCircle(sentimentScore) {
 }
 
 function renderSearchChart(data) {
+  console.log("RENDER SEARCH DATA!");
+  console.log(data);
+
   var data = data;
 
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -128,41 +131,41 @@ function visualInitializers() {
     $(this).removeClass('animated swing');
   });
 
-  // $('.buttons button').click(function(e) {
-  //   var divName = $(e.target).data('callback');
-  //   $('.'+ divName).addClass('animated fadeInLeft')
-  //                .show();
+  $('.buttons button').on('click', function(e) {
+    var divName = $(e.target).data('callback');
+    $('#'+ divName).addClass('animated fadeInLeft')
+                 .show();
+  })
+
+  // $('.articles').click(function() {
+  //   $('#chart').addClass('animated fadeOutLeft').fadeOut();
+  //   $('#historical_chart').addClass('animated fadeOutRight').fadeOut();
+  //   setTimeout(function() {
+  //     $('#results').addClass('animated fadeInUp').show();
+  //     $('#chart').class('');
+  //     $('#historical_chart').class('');
+  //   }, 100)
   // })
 
-  $('.articles').click(function() {
-    $('#chart').addClass('animated fadeOutLeft').fadeOut();
-    $('#historical_chart').addClass('animated fadeOutRight').fadeOut();
-    setTimeout(function() {
-      $('#results').addClass('animated fadeInUp').show();
-      $('#chart').removeClass('animated fadeOutLeft');
-      $('#historical_chart').addClass('animated fadeOutRight');
-    }, 100)
-  })
+  // $('.bar').click(function() {
+  //   $('#results').addClass('animated fadeOutDown').fadeOut();
+  //   $('#historical_chart').addClass('animated fadeOutRight').fadeOut();
+  //   setTimeout(function() {
+  //     $('#chart').addClass('animated fadeInLeft').show();
+  //     $('#results').class('');
+  //     $('#historical_chart').class('');
+  //   }, 100)
+  // })
 
-  $('.bar').click(function() {
-    $('#results').addClass('animated fadeOutDown').fadeOut();
-    $('#historical_chart').addClass('animated fadeOutRight').fadeOut();
-    setTimeout(function() {
-      $('#chart').addClass('animated fadeInLeft').show();
-      $('#results').removeClass('animated fadeOutDown');
-      $('#historical_chart').removeClass('animated fadeOutRight');
-    }, 100)
-  })
-
-  $('.history').click(function() {
-    $('#results').addClass('animated fadeOutDown').fadeOut();
-    $('#chart').addClass('animated fadeOutLeft').fadeOut();
-    setTimeout(function() {
-      $('#historical_chart').addClass('animated fadeInRight').show();
-      $('#results').removeClass('animated fadeOutDown').fadeOut();
-      $('#chart').removeClass('animated fadeOutLeft').fadeOut();
-    }, 100)
-  })
+  // $('.history').click(function() {
+  //   $('#results').addClass('animated fadeOutDown').fadeOut();
+  //   $('#chart').addClass('animated fadeOutLeft').fadeOut();
+  //   setTimeout(function() {
+  //     $('#historical_chart').addClass('animated fadeInRight').show();
+  //     $('#results').class('').fadeOut();
+  //     $('#chart').class('').fadeOut();
+  //   }, 100)
+  // })
 }
 
 function renderHistoricalData(array) {
@@ -202,8 +205,11 @@ function renderHistoricalData(array) {
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+  //TODO this whole thing is different from the example
   data.forEach(function(d) {
     color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+    //FIXME Aldric goes o^O
     d.date = parseDate(d.date);
 
     var sites = color.domain().map(function(name) {
