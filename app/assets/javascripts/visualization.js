@@ -128,8 +128,9 @@ function visualInitializers() {
     $(this).removeClass('animated swing');
   });
 
-  $('.articles').click(function() {
-    $('.results').addClass('animated fadeInLeft')
+  $('.buttons button').click(function(e) {
+    var divName = $(e.target).data('callback');
+    $('.'+ divName).addClass('animated fadeInLeft')
                  .show()
   })
 }

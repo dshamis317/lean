@@ -23,9 +23,7 @@ $(function() {
 
   $('.search').submit(function(e) {
     e.preventDefault();
-    $('#term').html('');
-    $('#topic').html('');
-    $('.results').html('');
+    clearPageData();
     var userText = $('.search_field').val();
     var topicID = $('.topics').val();
     $('#term').append(userText);

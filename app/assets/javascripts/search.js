@@ -16,7 +16,7 @@ function getSearchData(userInput, topicId) {
       $('.topics').val(topicId);
       var scores = getSentimentScores(data);
       // saveSentimentScoresToDB(input, topicId, scores);
-      // renderSearchChart(scores);
+      renderSearchChart(scores);
       renderSearchData(data);
       // getHistoricalData(input, topicId);
     }
@@ -135,4 +135,13 @@ function getHistoricalData(term, topicID) {
       // renderHistoricalData(data);
     }
   })
+}
+
+function clearPageData() {
+  $('#term').html('');
+  $('#topic').html('');
+  $('.results').html('').hide();
+  $('.chart').html('').hide();
+  $('.historical_chart').html('').hide();
+  $('.buttons').hide();
 }
