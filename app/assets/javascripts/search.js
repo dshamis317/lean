@@ -14,11 +14,12 @@ function getSearchData(userInput, topicId) {
       $('.buttons').fadeIn();
       $('.search_field').val('');
       $('.topics').val(topicId);
+      $('.results').show();
       var scores = getSentimentScores(data);
-      saveSentimentScoresToDB(input, topicId, scores);
+      // saveSentimentScoresToDB(input, topicId, scores);
       renderSearchChart(scores);
       renderSearchData(data);
-      // getHistoricalData(input, topicId);
+      getHistoricalData(input, topicId);
     }
   })
 }

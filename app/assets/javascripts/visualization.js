@@ -128,10 +128,40 @@ function visualInitializers() {
     $(this).removeClass('animated swing');
   });
 
-  $('.buttons button').click(function(e) {
-    var divName = $(e.target).data('callback');
-    $('.'+ divName).addClass('animated fadeInLeft')
-                 .show()
+  // $('.buttons button').click(function(e) {
+  //   var divName = $(e.target).data('callback');
+  //   $('.'+ divName).addClass('animated fadeInLeft')
+  //                .show();
+  // })
+
+  $('.articles').click(function() {
+    $('.chart').addClass('animated fadeOutLeft').fadeOut();
+    $('.historical_chart').addClass('animated fadeOutRight').fadeOut();
+    setTimeout(function() {
+      $('.results').addClass('animated fadeInUp').show();
+      $('.chart').removeClass('animated fadeOutLeft');
+      $('.historical_chart').addClass('animated fadeOutRight');
+    }, 100)
+  })
+
+  $('.bar').click(function() {
+    $('.results').addClass('animated fadeOutDown').fadeOut();
+    $('.historical_chart').addClass('animated fadeOutRight').fadeOut();
+    setTimeout(function() {
+      $('.chart').addClass('animated fadeInLeft').show();
+      $('.results').removeClass('animated fadeOutDown');
+      $('.historical_chart').addClass('animated fadeOutRight');
+    }, 100)
+  })
+
+  $('.history').click(function() {
+    $('.results').addClass('animated fadeOutDown').fadeOut();
+    $('.chart').addClass('animated fadeOutLeft').fadeOut();
+    setTimeout(function() {
+      $('.historical_chart').addClass('animated fadeInUp').show();
+      $('.results').removeClass('animated fadeOutDown').fadeOut();
+      $('.chart').removeClass('animated fadeOutLeft').fadeOut();
+    }, 100)
   })
 }
 
@@ -162,9 +192,9 @@ function renderHistoricalData(array) {
 
   var line = d3.svg.line()
       .interpolate("basis")
+      // .defined(function(d) { return d.y!=null; })
       .x(function(d) { return x(d.date); })
-      .y(function(d) { return y(d.sentiment); })
-      .defined(function(d) { return d.y!=0; });
+      .y(function(d) { return y(d.sentiment); });
 
   var svg = d3.select(".historical_chart").append("svg")
       .attr("width", width + margin.left + margin.right)

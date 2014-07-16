@@ -4,15 +4,19 @@ class Search < ActiveRecord::Base
 
   def self.parse_sentiment_data(array)
     scores = array
-    keys = scores.keys
-    formatted_scores = []
-    keys.each do |key|
-      score = []
-      score << scores[key]['name']
-      score << scores[key]['value']
-      formatted_scores << score
+    if scores.present?
+      keys = scores.keys
+      formatted_scores = []
+      keys.each do |key|
+        score = []
+        score << scores[key]['name']
+        score << scores[key]['value']
+        formatted_scores << score
+      end
+      return formatted_scores
+    else
+      return nil
     end
-    return formatted_scores
   end
 
 end
