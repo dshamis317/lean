@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715192923) do
+ActiveRecord::Schema.define(version: 20140716004734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140715192923) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "feed_name"
+    t.string   "date"
   end
 
   add_index "histories", ["search_id"], name: "index_histories_on_search_id", using: :btree

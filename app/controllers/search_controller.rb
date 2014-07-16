@@ -12,7 +12,6 @@ class SearchController < ApplicationController
   end
 
   def history
-    binding.pry
     term = params[:search_term].downcase
     topic = params[:topic_id].to_i
     search = Search.where({keyword: term, topic_id: topic})
@@ -27,7 +26,7 @@ class SearchController < ApplicationController
     score_data = Search.parse_sentiment_data(scores)
     searched = Search.find_or_create_by({keyword: search, topic_id: topic})
     score_data.each do |score|
-      history = History.create({search_id: searched.id, feed_name: score[0], sentiment: score[1].to_f})
+      history = History.create({search_id: searched.id, feed_name: score[0], sentiment: score[1].to_f, date: Time.now.strftime("%Y%m%d")})
       searched.histories << history
     end
     render :json => searched.to_json
