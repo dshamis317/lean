@@ -14,7 +14,8 @@ class SearchController < ApplicationController
   def history
     term = params[:search_term].downcase
     topic = params[:topic_id].to_i
-    search = Search.where({keyword: term, topic_id: topic})
+    search = Search.find_by({keyword: term, topic_id: topic})
+    binding.pry
     search.histories
     binding.pry
   end
