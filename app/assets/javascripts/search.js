@@ -15,7 +15,7 @@ function getSearchData(userInput, topicId) {
       $('.search_field').val('');
       $('.topics').val(topicId);
       var scores = getSentimentScores(data);
-      // saveSentimentScoresToDB(input, topicId, scores);
+      saveSentimentScoresToDB(input, topicId, scores);
       renderSearchChart(scores);
       renderSearchData(data);
       // getHistoricalData(input, topicId);
@@ -95,7 +95,11 @@ function getSentimentScores(array) {
     if (stories.length > 0) {
       var scores = [];
       $.each(stories, function(id, elem) {
-        scores.push((parseFloat(elem.sentiment_score) + 1) *.5);
+        if (elem.sentiment_score === null) {
+          scores.push(parseFloat(0.5));
+        } else {
+          scores.push((parseFloat(elem.sentiment_score) + 1) *.5);
+        }
       })
       var counter = 0;
       var sum = 0;
