@@ -17,7 +17,7 @@ function getSearchData(userInput, topicId) {
       var scores = getSentimentScores(data);
       // saveSentimentScoresToDB(input, topicId, scores);
       renderSearchChart(scores);
-      // renderSearchData(data);
+      renderSearchData(data);
       // getHistoricalData(input, topicId);
     }
   })
