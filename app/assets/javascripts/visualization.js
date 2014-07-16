@@ -49,7 +49,7 @@ function renderSearchChart(data) {
       .domain([1, 0])
       .range(["#FF0000", "#006600"]);
 
-  var svg = d3.select(".chart").append("svg")
+  var svg = d3.select("#chart").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -135,32 +135,32 @@ function visualInitializers() {
   // })
 
   $('.articles').click(function() {
-    $('.chart').addClass('animated fadeOutLeft').fadeOut();
-    $('.historical_chart').addClass('animated fadeOutRight').fadeOut();
+    $('#chart').addClass('animated fadeOutLeft').fadeOut();
+    $('#historical_chart').addClass('animated fadeOutRight').fadeOut();
     setTimeout(function() {
-      $('.results').addClass('animated fadeInUp').show();
-      $('.chart').removeClass('animated fadeOutLeft');
-      $('.historical_chart').addClass('animated fadeOutRight');
+      $('#results').addClass('animated fadeInUp').show();
+      $('#chart').removeClass('animated fadeOutLeft');
+      $('#historical_chart').addClass('animated fadeOutRight');
     }, 100)
   })
 
   $('.bar').click(function() {
-    $('.results').addClass('animated fadeOutDown').fadeOut();
-    $('.historical_chart').addClass('animated fadeOutRight').fadeOut();
+    $('#results').addClass('animated fadeOutDown').fadeOut();
+    $('#historical_chart').addClass('animated fadeOutRight').fadeOut();
     setTimeout(function() {
-      $('.chart').addClass('animated fadeInLeft').show();
-      $('.results').removeClass('animated fadeOutDown');
-      $('.historical_chart').addClass('animated fadeOutRight');
+      $('#chart').addClass('animated fadeInLeft').show();
+      $('#results').removeClass('animated fadeOutDown');
+      $('#historical_chart').removeClass('animated fadeOutRight');
     }, 100)
   })
 
   $('.history').click(function() {
-    $('.results').addClass('animated fadeOutDown').fadeOut();
-    $('.chart').addClass('animated fadeOutLeft').fadeOut();
+    $('#results').addClass('animated fadeOutDown').fadeOut();
+    $('#chart').addClass('animated fadeOutLeft').fadeOut();
     setTimeout(function() {
-      $('.historical_chart').addClass('animated fadeInUp').show();
-      $('.results').removeClass('animated fadeOutDown').fadeOut();
-      $('.chart').removeClass('animated fadeOutLeft').fadeOut();
+      $('#historical_chart').addClass('animated fadeInRight').show();
+      $('#results').removeClass('animated fadeOutDown').fadeOut();
+      $('#chart').removeClass('animated fadeOutLeft').fadeOut();
     }, 100)
   })
 }
@@ -196,7 +196,7 @@ function renderHistoricalData(array) {
       .x(function(d) { return x(d.date); })
       .y(function(d) { return y(d.sentiment); });
 
-  var svg = d3.select(".historical_chart").append("svg")
+  var svg = d3.select("#historical_chart").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")

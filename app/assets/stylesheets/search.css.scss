@@ -29,7 +29,7 @@
   font-style: italic;
 }
 
-.chart {
+#chart {
   display: none;
   width: 100%;
 
@@ -53,7 +53,7 @@
   }
 }
 
-.results {
+#results {
   display: none;
   width: 800px;
   border: 1px solid black;
@@ -74,7 +74,7 @@
   }
 }
 
-.historical_chart {
+#historical_chart {
   display: none;
 
   body {

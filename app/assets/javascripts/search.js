@@ -14,9 +14,9 @@ function getSearchData(userInput, topicId) {
       $('.buttons').fadeIn();
       $('.search_field').val('');
       $('.topics').val(topicId);
-      $('.results').show();
+      $('#results').show();
       var scores = getSentimentScores(data);
-      // saveSentimentScoresToDB(input, topicId, scores);
+      saveSentimentScoresToDB(input, topicId, scores);
       renderSearchChart(scores);
       renderSearchData(data);
       getHistoricalData(input, topicId);
@@ -26,7 +26,7 @@ function getSearchData(userInput, topicId) {
 
 function renderSearchData(array) {
   console.log(array)
-  var $results = $('.results');
+  var $results = $('#results');
   for (var i = 0; i < array.length; i++) {
     var $div = parseSearchData(array[i]);
     $results.append($div)
@@ -152,8 +152,8 @@ function getHistoricalData(term, topicID) {
 function clearPageData() {
   $('#term').html('');
   $('#topic').html('');
-  $('.results').html('').hide();
-  $('.chart').html('').hide();
-  $('.historical_chart').html('').hide();
+  $('#results').html('').hide();
+  $('#chart').html('').hide();
+  $('#historical_chart').html('').hide();
   $('.buttons').hide();
 }
