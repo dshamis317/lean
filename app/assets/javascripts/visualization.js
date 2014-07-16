@@ -163,7 +163,8 @@ function renderHistoricalData(array) {
   var line = d3.svg.line()
       .interpolate("basis")
       .x(function(d) { return x(d.date); })
-      .y(function(d) { return y(d.sentiment); });
+      .y(function(d) { return y(d.sentiment); })
+      .defined(function(d) { return d.y!=0; });
 
   var svg = d3.select(".historical_chart").append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -221,6 +222,7 @@ function renderHistoricalData(array) {
         .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.sentiment) + ")"; })
         .attr("x", 3)
         .attr("dy", ".35em")
+        // .style("text-anchor", "inherit")
         .text(function(d) { return d.name; });
   });
 }
