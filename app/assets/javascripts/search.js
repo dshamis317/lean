@@ -11,6 +11,7 @@ function getSearchData(userInput, topicId) {
     },
     success: function(data) {
       $('.load').hide();
+      $('.buttons').fadeIn();
       $('.search_field').val('');
       $('.topics').val(topicId);
       var scores = getSentimentScores(data);
@@ -28,7 +29,7 @@ function renderSearchData(array) {
   for (var i = 0; i < array.length; i++) {
     var $div = parseSearchData(array[i]);
     $results.append($div)
-    $results.fadeIn();
+    // $results.fadeIn();
   }
 }
 

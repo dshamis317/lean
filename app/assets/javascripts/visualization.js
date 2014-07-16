@@ -128,5 +128,8 @@ function visualInitializers() {
     $(this).removeClass('animated swing');
   });
 
-
+  $('.articles').click(function() {
+    $('.results').addClass('animated fadeInLeft')
+                 .show()
+  })
 }
