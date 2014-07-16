@@ -68,7 +68,11 @@ function parseStories(array) {
       var $storyA = $('<a>').attr('href', stories[j].story_url)
                             .attr('target', '_blank')
                             .html(stories[j].title);
-      var sentimentScore = Math.round((parseFloat(stories[j].sentiment_score) + 1) * 50);
+      if (stories[j].sentiment_score === null) {
+        var sentimentScore = 50;
+      } else {
+        var sentimentScore = Math.round((parseFloat(stories[j].sentiment_score) + 1) * 50);
+      }
       var sentiment = $('<p>').addClass('sentiment')
                               .html('Sentiment: ' + stories[j].sentiment_type);
       var $canvas = makeSentimentCircle(sentimentScore)
