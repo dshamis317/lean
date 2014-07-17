@@ -8,6 +8,7 @@ function getSearchData(userInput, topicId) {
     dataType: 'json',
     beforeSend: function() {
       $('.load').fadeIn();
+      $('.footer').fadeIn();
     },
     success: function(data) {
       $('.load').hide();
