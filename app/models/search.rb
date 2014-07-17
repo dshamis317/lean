@@ -27,6 +27,35 @@ class Search < ActiveRecord::Base
     return data
   end
 
+  def self.compile_data_for_search(results_array, scores_array, history_array)
+    data = {}
+    data[:search_results] = results_array
+    data[:scores] = scores_array
+    data[:historical_data] = history_array
+    return data
+  end
+
+  def self.compile_historical_data(term, topic)
+    search = Search.find_by({keyword: term, topic_id: topic})
+    initial_object = Search.compile_for_d3_object(search.histories).values
+    secondary_object = Search.parse_data_object(initial_object).values
+    dates = secondary_object.map {|day| day[:date].to_i}
+    max = dates.max.to_s
+    min = dates.min.to_s
+    feeds = Feed.where(topic_id: topic).map(&:name)
+    historical_data = (min..max).map do |date|
+      hash = {}
+      hash[:date] = date
+      feeds.each do |publication|
+        current_date = secondary_object.find{|obj| obj[:date] == date }
+        current_sentiment = current_date ? (current_date[publication] || 0) : 0
+        hash[publication] = current_sentiment
+      end
+      hash
+    end
+    return historical_data
+  end
+
   def self.parse_sentiment_data(array)
     scores = array
     if scores.present?
