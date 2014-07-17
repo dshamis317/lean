@@ -113,6 +113,7 @@ function clearPageData() {
   $('#chart').html('').hide();
   $('#historical_chart').html('').hide();
   $('.buttons').hide();
+  $('.footer').hide();
 };
 
 function automatedSearches() {
