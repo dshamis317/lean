@@ -97,8 +97,9 @@ function saveScoresToDB(term, topicID) {
     method: 'post',
     data: {search: searchTerm, topic: topic},
     dataType: 'json',
-    success: function() {
-      console.log('SAVED TO DB')
+    success: function(data) {
+      console.log('SAVED TO DB');
+      console.log(data);
     }
   })
 }
@@ -114,23 +115,23 @@ function clearPageData() {
 
 function automatedSearches() {
   setInterval(function() {
-    saveScoresToDB('obama', 11)
+    saveScoresToDB('obama', 11);
   }, 21600000);
 
   setInterval(function() {
-    saveScoresToDB('kardashian', 12)
+    saveScoresToDB('kardashian', 12);
   }, 21700000)
 
   setInterval(function() {
-    saveScoresToDB('lebron', 15)
+    saveScoresToDB('lebron', 15);
   }, 21800000);
 
   setInterval(function() {
-    saveScoresToDB('google', 13)
+    saveScoresToDB('google', 13);
   }, 21900000)
 
   setInterval(function() {
-    saveScoresToDB('facebook', 13)
+    saveScoresToDB('facebook', 13);
   }, 22000000)
 
 }
