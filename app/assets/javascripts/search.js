@@ -108,6 +108,7 @@ function clearPageData() {
   $('#term').html('');
   $('#topic').html('');
   $('#results').html('').hide();
+  $('.user_search_title').hide();
   $('#chart').html('').hide();
   $('#historical_chart').html('').hide();
   $('.buttons').hide();
