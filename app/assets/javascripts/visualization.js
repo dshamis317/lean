@@ -163,6 +163,11 @@ function visualInitializers() {
       $('#chart').removeClass('animated fadeOutLeft');
     }, 100)
   })
+
+  $('.title').click(function(e) {
+    e.preventDefault();
+    clearPageData();
+  })
 }
 
 function renderHistoricalData(array) {

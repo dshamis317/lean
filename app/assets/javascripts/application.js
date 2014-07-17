@@ -22,7 +22,7 @@
 $(function() {
   visualInitializers();
 
-  $('.search').on('submit', function(e) {
+  $('.search').submit(function(e) {
     e.preventDefault();
     clearPageData();
     var userText = $('.search_field').val();
