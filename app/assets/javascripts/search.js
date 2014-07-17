@@ -164,18 +164,18 @@ function automatedSearches() {
 
   setInterval(function() {
     getSearchData('kardashian', 12)
-  }, 21601000)
+  }, 21700000)
 
   setInterval(function() {
     getSearchData('lebron', 15)
-  }, 21602000);
+  }, 21800000);
 
   setInterval(function() {
     getSearchData('google', 13)
-  }, 21603000)
+  }, 21900000)
 
   setInterval(function() {
     getSearchData('facebook', 13)
-  }, 21604000)
+  }, 22000000)
 
 }

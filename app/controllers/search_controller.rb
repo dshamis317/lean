@@ -8,6 +8,7 @@ class SearchController < ApplicationController
     topic = params[:topics].to_i
     urls = Feed.get_feed_urls(topic)
     search_results = Feed.create_news_source_objects(urls, search)
+    scores = Search.get_sentiment_scores(search_results)
     render :json => search_results.to_json
   end
 

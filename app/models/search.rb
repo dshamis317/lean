@@ -2,6 +2,31 @@ class Search < ActiveRecord::Base
   has_many :histories
   has_many :feeds, through: :histories
 
+  def self.get_sentiment_scores(array)
+    data = []
+    array.each do |news_source|
+      stories = news_source[:stories]
+      if stories.length > 0
+        scores = []
+        stories.each do |story|
+          if story[:sentiment_score] == 'null'
+            scores << 0.5.to_f
+          else
+            scores << ((story[:sentiment_score].to_f + 1) * 0.5).to_f
+          end
+        end
+        counter = 0
+        sum = 0
+        scores.each do |score|
+          sum += score
+          counter += 1
+        end
+        data << {name:news_source[:title], value: (sum/counter).to_f}
+      end
+    end
+    return data
+  end
+
   def self.parse_sentiment_data(array)
     scores = array
     if scores.present?
