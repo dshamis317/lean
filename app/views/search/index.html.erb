@@ -1,6 +1,7 @@
 <form action="/" method ="post" class="search">
   <%= token_tag %>
   <input type="text" class="search_field" name="search">
+  <br>
   <select name="topics" class="topics">
     <% @topics.each do |topic| %>
     <option value="<%= topic.id %>"><%= topic.name %></option>

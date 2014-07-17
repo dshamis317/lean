@@ -4,6 +4,19 @@
 
 .search {
   text-align: center;
+
+  .search_field {
+    height: 20px;
+    width: 200px;
+    font-size: 16px;
+    font-family: 'Cantarell', sans-serif;
+    margin: 10px 0 10px 0;
+    text-align: center;
+  }
+
+  .search_submit:hover {
+    cursor: pointer;
+  }
 }
 
 .user_search_title {

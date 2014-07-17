@@ -128,6 +128,12 @@ function visualInitializers() {
     $(this).removeClass('animated swing');
   });
 
+  $('.search_submit').hover(function() {
+    $(this).addClass('animated pulse');
+  }, function() {
+    $(this).removeClass('animated pulse');
+  });
+
   $('.bar').click(function() {
     $('#results').addClass('animated fadeOutDown').hide();
     $('#historical_chart').addClass('animated fadeOutRight').hide();
@@ -186,15 +192,15 @@ function renderHistoricalData(array) {
 
   var line = d3.svg.line()
   .interpolate("basis")
-      .defined(function(d) { return d.y!=0; })
-      .x(function(d) { return x(d.date); })
-      .y(function(d) { return y(d.sentiment); });
+  .defined(function(d) { return d.y!=0; })
+  .x(function(d) { return x(d.date); })
+  .y(function(d) { return y(d.sentiment); });
 
-      var svg = d3.select("#historical_chart").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  var svg = d3.select("#historical_chart").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   data.forEach(function(d) {
     color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
