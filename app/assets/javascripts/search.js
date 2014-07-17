@@ -10,17 +10,14 @@ function getSearchData(userInput, topicId) {
       $('.load').fadeIn();
     },
     success: function(data) {
-      // data => { scores: [], other_stuff: [], historical_data: [] }
       $('.load').hide();
       $('.buttons').fadeIn();
       $('.search_field').val('');
       $('.topics').val(topicId);
       $('#results').show();
-      var scores = getSentimentScores(data);
-      saveSentimentScoresToDB(input, topicId, scores);
-      renderSearchChart(scores);
-      renderSearchData(data);
-      getHistoricalData(input, topicId);
+      renderSearchChart(data.scores);
+      renderSearchData(data.search_results);
+      renderHistoricalData(data.historical_data);
     }
   })
 }
