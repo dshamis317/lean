@@ -20,7 +20,7 @@ function getSearchData(userInput, topicId) {
       renderHistoricalData(data.historical_data);
     }
   })
-}
+};
 
 function renderSearchData(array) {
   console.log(array)
@@ -30,30 +30,30 @@ function renderSearchData(array) {
     $results.append($div)
     // $results.fadeIn();
   }
-}
+};
 
 function parseSearchData(array) {
   var $div = $('<div>').addClass('search_div');
   var $h3 = $('<h3>').addClass('search_title');
   var $tooltipA = $('<a>').attr('title', array.description)
-                          .attr('href', '#')
-                          .html(array.title + "  ");
+  .attr('href', '#')
+  .html(array.title + "  ");
   var $i = $('<i>').addClass('fa fa-share');
   var $siteLinkA = $('<a>').attr('href', array.site_url)
-                   .attr('target', '_blank')
-                   .append($i);
+  .attr('target', '_blank')
+  .append($i);
   var $span = $('<span>').append($siteLinkA);
   var $h5 = $('<h5>').addClass('search_description')
-                     .html('Updated: ' + new Date(array.modified));
+  .html('Updated: ' + new Date(array.modified));
   $h3.append($tooltipA);
   $h3.append($span);
   $div.append($h3)
-      .append($h5);
+  .append($h5);
 
   var $storyDiv = parseStories(array.stories)
   $div.append($storyDiv);
   return $div;
-}
+};
 
 function parseStories(array) {
   var stories = array;
@@ -61,33 +61,33 @@ function parseStories(array) {
   if (stories.length > 0) {
     for (var j = 0; j < stories.length; j++) {
       var $ul = $('<ul>').addClass('story_list')
-                         .appendTo($storyDiv);
+      .appendTo($storyDiv);
       var $storyA = $('<a>').attr('href', stories[j].story_url)
-                            .attr('target', '_blank')
-                            .html(stories[j].title);
+      .attr('target', '_blank')
+      .html(stories[j].title);
       if (stories[j].sentiment_score === null) {
         var sentimentScore = 50;
       } else {
         var sentimentScore = Math.round((parseFloat(stories[j].sentiment_score) + 1) * 50);
       }
       var sentiment = $('<p>').addClass('sentiment')
-                              .html('Sentiment: ' + stories[j].sentiment_type);
+      .html('Sentiment: ' + stories[j].sentiment_type);
       var $canvas = makeSentimentCircle(sentimentScore)
 
       var $li = $('<li>').addClass('story')
-                         .append($storyA)
-                         .append(sentiment)
-                         .append($canvas)
-                         .appendTo($ul);
+      .append($storyA)
+      .append(sentiment)
+      .append($canvas)
+      .appendTo($ul);
       $storyDiv.append($ul);
     }
   } else {
     var $p = $('<p>').html('Nothing to see here, check back later...')
-                     .appendTo($storyDiv);
+    .appendTo($storyDiv);
     $storyDiv.append($p);
   }
   return $storyDiv
-}
+};
 
 function saveScoresToDB(term, topicID) {
   var searchTerm = term;
@@ -102,7 +102,7 @@ function saveScoresToDB(term, topicID) {
       console.log(data);
     }
   })
-}
+};
 
 function clearPageData() {
   $('#term').html('');
@@ -111,7 +111,7 @@ function clearPageData() {
   $('#chart').html('').hide();
   $('#historical_chart').html('').hide();
   $('.buttons').hide();
-}
+};
 
 function automatedSearches() {
   setInterval(function() {
@@ -133,5 +133,43 @@ function automatedSearches() {
   setInterval(function() {
     saveScoresToDB('facebook', 13);
   }, 22000000)
+};
 
+function getTickerInfo() {
+  $.ajax({
+    url: '/ticker',
+    method: 'get',
+    dataType: 'json',
+    success: function(data) {
+      console.log(data);
+      renderTicker(data);
+    }
+  })
+}
+
+function renderTicker(array) {
+  var ticker = $('.ticker')
+
+  $.each(array, function(i, item) {
+    var $li = $('<li>').html(item)
+                       .addClass('jq-news-ticker-item');
+    ticker.append($li);
+  });
+
+  $('.news-ticker').easyTicker({
+    direction: 'up',
+    easing: 'swing',
+    speed: 'fast',
+    interval: 1500,
+    height: 'auto',
+    visible: 1,
+    mousePause: 1,
+    controls: {
+      up: '',
+      down: '',
+      toggle: '',
+      playText: 'Play',
+      stopText: 'Stop'
+    }
+  });
 }

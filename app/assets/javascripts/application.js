@@ -15,6 +15,7 @@
 //= require jquery.ui.all
 //= require jquery.mambo
 //= require d3
+//= require jquery.easy-ticker
 //= require turbolinks
 //= require_tree .
 
@@ -33,6 +34,8 @@ $(function() {
   })
 
   automatedSearches();
+
+  getTickerInfo();
 })
 
 $( document ).tooltip();

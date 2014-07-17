@@ -30,4 +30,10 @@ class SearchController < ApplicationController
     end
     render :json => searched.to_json
   end
+
+  def ticker
+    data = HTTParty.get('http://hawttrends.appspot.com/api/terms/')
+    ticker = data['1']
+    render :json => ticker.to_json
+  end
 end
