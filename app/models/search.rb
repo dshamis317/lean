@@ -36,7 +36,7 @@ class Search < ActiveRecord::Base
   end
 
   def self.compile_historical_data(term, topic)
-    search = Search.find_by({keyword: term, topic_id: topic})
+    search = Search.find_or_create_by({keyword: term, topic_id: topic})
     initial_object = Search.compile_for_d3_object(search.histories).values
     secondary_object = Search.parse_data_object(initial_object).values
     dates = secondary_object.map {|day| day[:date].to_i}

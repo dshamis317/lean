@@ -8,7 +8,7 @@ class SearchController < ApplicationController
     topic = params[:topics].to_i
     urls = Feed.get_feed_urls(topic)
     search_results = Feed.create_news_source_objects(urls, term)
-    scores = Search.get_sentiment_scores_for_search(search_results)
+    scores = Search.get_sentiment_scores(search_results)
     historical_data = Search.compile_historical_data(term, topic)
     data_object = Search.compile_data_for_search(search_results, scores, historical_data)
     render :json => data_object.to_json

@@ -16,5 +16,29 @@
     }
   }
 
+  .ticker_div {
+    width: 420px;
+    display: inline;
+    float: right;
+    margin: -42px 10px 0 0;
+    padding: 5px 0 5px 5px;
+    vertical-align: middle;
+
+    h3 {
+      margin: 0;
+      float: left;
+      font-family: 'Lato', sans-serif;
+    }
+    .ticker {
+      width: 200px;
+
+      .news-ticker-item {
+        list-style: none;
+        font-family: 'Cantarell', sans-serif;
+      }
+    }
+
+  }
+
 }
 

@@ -152,7 +152,7 @@ function renderTicker(array) {
 
   $.each(array, function(i, item) {
     var $li = $('<li>').html(item)
-                       .addClass('jq-news-ticker-item');
+                       .addClass('news-ticker-item');
     ticker.append($li);
   });
 
@@ -160,7 +160,7 @@ function renderTicker(array) {
     direction: 'up',
     easing: 'swing',
     speed: 'fast',
-    interval: 1500,
+    interval: 2000,
     height: 'auto',
     visible: 1,
     mousePause: 1,
