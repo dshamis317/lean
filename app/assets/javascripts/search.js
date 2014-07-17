@@ -89,58 +89,16 @@ function parseStories(array) {
   return $storyDiv
 }
 
-function getSentimentScores(array) {
-  var data = [];
-  $.each(array, function(idx, datum) {
-    var stories = datum.stories;
-    if (stories.length > 0) {
-      var scores = [];
-      $.each(stories, function(id, elem) {
-        if (elem.sentiment_score === null) {
-          scores.push(parseFloat(0.5));
-        } else {
-          scores.push((parseFloat(elem.sentiment_score) + 1) *.5);
-        }
-      })
-      var counter = 0;
-      var sum = 0;
-      $.each(scores, function(i, num) {
-        sum += num;
-        counter ++;
-      })
-      data.push({name: datum.title, value: sum/counter});
-      }
-    // } else {
-    //   data.push({name: datum.title, value: 0});
-    // }
-  })
-  return data;
-}
-
-function saveSentimentScoresToDB(term, topicID, array) {
+function saveScoresToDB(term, topicID) {
   var searchTerm = term;
   var topic = topicID;
-  var scores = array;
   $.ajax({
-    url: '/history',
+    url: '/history/' + topic + '/' + searchTerm,
     method: 'post',
-    data: {search: searchTerm, topic: topic, scores: scores},
+    data: {search: searchTerm, topic: topic},
     dataType: 'json',
     success: function() {
       console.log('SAVED TO DB')
-    }
-  })
-}
-
-function getHistoricalData(term, topicID) {
-  var searchTerm = term;
-  var topic = topicID;
-  $.ajax({
-    url: '/history/' + searchTerm + '/' + topic,
-    dataType: 'json',
-    success: function(data) {
-      console.log(data);
-      renderHistoricalData(data);
     }
   })
 }
@@ -156,23 +114,23 @@ function clearPageData() {
 
 function automatedSearches() {
   setInterval(function() {
-    getSearchData('obama', 11)
+    saveScoresToDB('obama', 11)
   }, 21600000);
 
   setInterval(function() {
-    getSearchData('kardashian', 12)
+    saveScoresToDB('kardashian', 12)
   }, 21700000)
 
   setInterval(function() {
-    getSearchData('lebron', 15)
+    saveScoresToDB('lebron', 15)
   }, 21800000);
 
   setInterval(function() {
-    getSearchData('google', 13)
+    saveScoresToDB('google', 13)
   }, 21900000)
 
   setInterval(function() {
-    getSearchData('facebook', 13)
+    saveScoresToDB('facebook', 13)
   }, 22000000)
 
 }

@@ -56,7 +56,7 @@ class Search < ActiveRecord::Base
     return historical_data
   end
 
-  def self.parse_sentiment_data(array)
+  def self.parse_sentiment_data_for_search(array)
     scores = array
     if scores.present?
       keys = scores.keys
@@ -66,6 +66,22 @@ class Search < ActiveRecord::Base
         score << scores[key]['name']
         score << scores[key]['value']
         formatted_scores << score
+      end
+      return formatted_scores
+    else
+      return nil
+    end
+  end
+
+  def self.parse_sentiment_data_for_save(array)
+    scores = array
+    if scores.present?
+      formatted_scores = []
+      scores.each do |score|
+        sentiment = []
+        sentiment << score[:name]
+        sentiment << score[:value].to_f
+        formatted_scores << sentiment
       end
       return formatted_scores
     else
