@@ -119,23 +119,23 @@ function clearPageData() {
 function automatedSearches() {
   setInterval(function() {
     saveScoresToDB('obama', 11);
-  }, 21600000);
+  }, 600000);
 
   setInterval(function() {
     saveScoresToDB('kardashian', 12);
-  }, 21700000)
+  }, 700000)
 
   setInterval(function() {
     saveScoresToDB('lebron', 15);
-  }, 21800000);
+  }, 800000);
 
   setInterval(function() {
     saveScoresToDB('google', 13);
-  }, 21900000)
+  }, 900000)
 
   setInterval(function() {
     saveScoresToDB('facebook', 13);
-  }, 22000000)
+  }, 1000000)
 };
 
 function getTickerInfo() {
