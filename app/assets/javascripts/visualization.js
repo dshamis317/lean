@@ -176,14 +176,15 @@ function visualInitializers() {
   })
 }
 
-function renderHistoricalData(array) {
-  var data = array;
+function renderHistoricalData(data) {
+  var parseDate = d3.time.format("%Y%m%d").parse;
+
+  data.forEach(function(d) { d.date = parseDate(d.date); });
+  // data.sort(function(a,b) { return a.date - b.date; });
 
   var margin = {top: 20, right: 80, bottom: 30, left: 50},
   width = 1200 - margin.left - margin.right,
   height = 450 - margin.top - margin.bottom;
-
-  var parseDate = d3.time.format("%Y%m%d").parse;
 
   var x = d3.time.scale()
   .range([0, width]);
@@ -203,7 +204,7 @@ function renderHistoricalData(array) {
 
   var line = d3.svg.line()
   .interpolate("basis")
-  .defined(function(d) { return d.y!=0; })
+  // .defined(function(d) { return d.y!=0; })
   .x(function(d) { return x(d.date); })
   .y(function(d) { return y(d.sentiment); });
 
@@ -213,58 +214,57 @@ function renderHistoricalData(array) {
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  data.forEach(function(d) {
-    color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
-    d.date = parseDate(d.date);
+  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
-    var sites = color.domain().map(function(name) {
-      return {
-        name: name,
-        values: data.map(function(d) {
-          return {date: d.date, sentiment: +d[name]};
-        })
-      };
-    });
+  var sites = color.domain().map(function(name) {
+    return {
+      name: name,
+      values: data.map(function(d) {
+        return {date: d.date, sentiment: +d[name]};
+      })
+    };
+  });
 
-    x.domain(d3.extent(data, function(d) { return d.date; }));
+  x.domain(d3.extent(data, function(d) { return d.date; }));
 
-    y.domain([
-      d3.min(sites, function(c) { return d3.min(c.values, function(v) { return v.sentiment; }); }),
-      d3.max(sites, function(c) { return d3.max(c.values, function(v) { return v.sentiment; }); })
-      ]);
+  y.domain([
+    d3.min(sites, function(c) { return d3.min(c.values, function(v) { return v.sentiment; }); }),
+    d3.max(sites, function(c) { return d3.max(c.values, function(v) { return v.sentiment; }); })
+    ]);
 
-    var site = svg.selectAll(".site")
-    .data(sites)
-    .enter().append("g")
-    .attr("class", "site");
+  var site = svg.selectAll(".site")
+  .data(sites)
+  .enter().append("g")
+  .attr("class", "site");
 
-    site.append("path")
-    .attr("class", "line")
-    .attr("d", function(d) { return line(d.values); })
-    .style("stroke", function(d) { return color(d.name); });
+  site.append("path")
+  .attr("class", "line")
+  .attr("d", function(d) { return line(d.values); })
+  .style("stroke", function(d) { return color(d.name); });
 
-    site.append("text")
-    .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-    .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.sentiment) + ")"; })
-    .attr("x", 3)
-    .attr("dy", ".35em")
-        .style("text-anchor", "start")
-        .text(function(d) { return d.name; });
-      });
+  site.append("text")
+  .attr("transform", function(d) {
+      var val = d.values[d.values.length-1];
+      return "translate(" + x(val.date) + "," + y(val.sentiment) + ")";
+  })
+  .attr("x", 3)
+  .attr("dy", ".35em")
+      .style("text-anchor", "start")
+      .text(function(d) { return d.name; });
 
-svg.append("g")
-  .attr("class", "x axis")
-  .attr("transform", "translate(0," + height + ")")
-  .call(xAxis);
+  svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
 
-svg.append("g")
-  .attr("class", "y axis")
-  .call(yAxis)
-  .append("text")
-  .attr("transform", "rotate(-90)")
-  .attr("y", 6)
-  .attr("dy", ".71em")
-  .style("text-anchor", "end")
-  .text("Sentiment (%)");
+  svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Sentiment (%)");
 
 }
