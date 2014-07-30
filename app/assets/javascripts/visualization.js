@@ -180,39 +180,44 @@ function renderHistoricalData(data) {
   var parseDate = d3.time.format("%Y%m%d").parse;
 
   data.forEach(function(d) { d.date = parseDate(d.date); });
-  // data.sort(function(a,b) { return a.date - b.date; });
 
   var margin = {top: 20, right: 80, bottom: 30, left: 50},
   width = 1200 - margin.left - margin.right,
   height = 450 - margin.top - margin.bottom;
 
   var x = d3.time.scale()
-  .range([0, width]);
+    .range([0, width]);
 
   var y = d3.scale.linear()
-  .range([height, 0]);
+    .range([height, 0]);
 
   var color = d3.scale.category10();
 
   var xAxis = d3.svg.axis()
-  .scale(x)
-  .orient("bottom");
+    .scale(x)
+    .orient("bottom");
 
   var yAxis = d3.svg.axis()
-  .scale(y)
-  .orient("left");
+    .scale(y)
+    .orient("left");
+
+  // var zoom = d3.behavior.zoom()
+  //   .x(x)
+  //   .y(y)
+  //   .scaleExtent([1, 10])
+  //   .on("zoom", zoomed);
 
   var line = d3.svg.line()
   .interpolate("basis")
-  // .defined(function(d) { return d.y!=0; })
-  .x(function(d) { return x(d.date); })
-  .y(function(d) { return y(d.sentiment); });
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.sentiment); });
 
   var svg = d3.select("#historical_chart").append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    // .call(zoom)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
@@ -233,24 +238,24 @@ function renderHistoricalData(data) {
     ]);
 
   var site = svg.selectAll(".site")
-  .data(sites)
-  .enter().append("g")
-  .attr("class", "site");
+    .data(sites)
+    .enter().append("g")
+      .attr("class", "site");
 
   site.append("path")
-  .attr("class", "line")
-  .attr("d", function(d) { return line(d.values); })
-  .style("stroke", function(d) { return color(d.name); });
+    .attr("class", "line")
+    .attr("d", function(d) { return line(d.values); })
+    .style("stroke", function(d) { return color(d.name); });
 
   site.append("text")
-  .attr("transform", function(d) {
-      var val = d.values[d.values.length-1];
-      return "translate(" + x(val.date) + "," + y(val.sentiment) + ")";
-  })
-  .attr("x", 3)
-  .attr("dy", ".35em")
-      .style("text-anchor", "start")
-      .text(function(d) { return d.name; });
+    .attr("transform", function(d) {
+        var val = d.values[d.values.length-1];
+        return "translate(" + x(val.date) + "," + y(val.sentiment) + ")";
+    })
+    .attr("x", 3)
+    .attr("dy", ".35em")
+        .style("text-anchor", "start")
+        .text(function(d) { return d.name; });
 
   svg.append("g")
     .attr("class", "x axis")
@@ -260,11 +265,26 @@ function renderHistoricalData(data) {
   svg.append("g")
     .attr("class", "y axis")
     .call(yAxis)
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", ".71em")
-    .style("text-anchor", "end")
-    .text("Sentiment (%)");
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Sentiment (%)");
 
+  // function zoomed() {
+  //   svg.select(".x.axis")
+  //     .call(xAxis);
+
+  //   svg.select(".y.axis")
+  //     .call(yAxis);
+
+  //   svg.selectAll('path.line')
+  //     .attr('d', line);
+
+  //   site.selectAll('.site').attr("transform", function(d) {
+  //     var val = d.values
+  //     return "translate(" + x(d.val.date) + "," + y(d.val.sentiment) + ")"; }
+  //   );
+  // }
 }
