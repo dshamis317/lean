@@ -40,7 +40,6 @@ gem 'spring',        group: :development
 
 group :development, :test do
   gem 'pry'
-  gem 'pry-nav'
   gem 'rspec-rails', '~> 2.14.2'
 end
 
