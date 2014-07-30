@@ -11,6 +11,14 @@ class SearchController < ApplicationController
     scores = Search.get_sentiment_scores(search_results)
     historical_data = Search.compile_historical_data(term, topic)
     data_object = Search.compile_data_for_search(search_results, scores, historical_data)
+    score_data = Search.parse_sentiment_data_for_save(scores)
+    searched = Search.find_or_create_by({keyword: term, topic_id: topic})
+    if score_data.present?
+      score_data.each do |score|
+        history = History.create({search_id: searched.id, feed_name: score[0], sentiment: score[1].to_f, date: Time.now.strftime("%Y%m%d")})
+        searched.histories << history
+      end
+    end
     render :json => data_object.to_json
   end
 
