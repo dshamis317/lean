@@ -201,24 +201,6 @@ function renderHistoricalData(data) {
     .scale(y)
     .orient("left");
 
-  // var zoom = d3.behavior.zoom()
-  //   .x(x)
-  //   .y(y)
-  //   .scaleExtent([1, 10])
-  //   .on("zoom", zoomed);
-
-  var line = d3.svg.line()
-  .interpolate("basis")
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.sentiment); });
-
-  var svg = d3.select("#historical_chart").append("svg")
-    // .call(zoom)
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
   color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 
   var sites = color.domain().map(function(name) {
@@ -236,6 +218,24 @@ function renderHistoricalData(data) {
     d3.min(sites, function(c) { return d3.min(c.values, function(v) { return v.sentiment; }); }),
     d3.max(sites, function(c) { return d3.max(c.values, function(v) { return v.sentiment; }); })
     ]);
+
+  // var zoom = d3.behavior.zoom()
+  //   .x(x)
+  //   .y(y)
+  //   .scaleExtent([1, 10])
+  //   .on("zoom", zoomed);
+
+  var line = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.sentiment); });
+
+  var svg = d3.select("#historical_chart").append("svg")
+    // .call(zoom)
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   var site = svg.selectAll(".site")
     .data(sites)
@@ -273,18 +273,8 @@ function renderHistoricalData(data) {
       .text("Sentiment (%)");
 
   // function zoomed() {
-  //   svg.select(".x.axis")
-  //     .call(xAxis);
-
-  //   svg.select(".y.axis")
-  //     .call(yAxis);
-
-  //   svg.selectAll('path.line')
-  //     .attr('d', line);
-
-  //   site.selectAll('.site').attr("transform", function(d) {
-  //     var val = d.values
-  //     return "translate(" + x(d.val.date) + "," + y(d.val.sentiment) + ")"; }
-  //   );
+  //   svg.select(".x.axis").call(xAxis);
+  //   svg.select(".y.axis").call(yAxis);
+  //   svg.selectAll('path.line').attr('d', function(d) { return line(d.values); });
   // }
 }
