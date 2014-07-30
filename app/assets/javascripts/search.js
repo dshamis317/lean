@@ -136,6 +136,30 @@ function automatedSearches() {
   setInterval(function() {
     saveScoresToDB('facebook', 13);
   }, 1000000)
+
+  setInterval(function() {
+    saveScoresToDB('gop', 11);
+  }, 1100000);
+
+  setInterval(function() {
+    saveScoresToDB('beyonce', 12);
+  }, 1200000)
+
+  setInterval(function() {
+    saveScoresToDB('manchester united', 15);
+  }, 1300000);
+
+  setInterval(function() {
+    saveScoresToDB('jeter', 15);
+  }, 1400000)
+
+  setInterval(function() {
+    saveScoresToDB('twitter', 13);
+  }, 1500000)
+
+  setInterval(function() {
+    saveScoresToDB('instagram', 13);
+  }, 1600000)
 };
 
 function getTickerInfo() {
