@@ -219,11 +219,11 @@ function renderHistoricalData(data) {
     d3.max(sites, function(c) { return d3.max(c.values, function(v) { return v.sentiment; }); })
     ]);
 
-  // var zoom = d3.behavior.zoom()
-  //   .x(x)
-  //   .y(y)
-  //   .scaleExtent([1, 10])
-  //   .on("zoom", zoomed);
+  var zoom = d3.behavior.zoom()
+    .x(x)
+    .y(y)
+    .scaleExtent([1, 10])
+    .on("zoom", zoomed);
 
   var line = d3.svg.line()
     .interpolate("basis")
@@ -231,7 +231,7 @@ function renderHistoricalData(data) {
     .y(function(d) { return y(d.sentiment); });
 
   var svg = d3.select("#historical_chart").append("svg")
-    // .call(zoom)
+    .call(zoom)
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -248,6 +248,7 @@ function renderHistoricalData(data) {
     .style("stroke", function(d) { return color(d.name); });
 
   site.append("text")
+    .attr("class", "lineLabel")
     .attr("transform", function(d) {
         var val = d.values[d.values.length-1];
         return "translate(" + x(val.date) + "," + y(val.sentiment) + ")";
@@ -272,9 +273,14 @@ function renderHistoricalData(data) {
       .style("text-anchor", "end")
       .text("Sentiment (%)");
 
-  // function zoomed() {
-  //   svg.select(".x.axis").call(xAxis);
-  //   svg.select(".y.axis").call(yAxis);
-  //   svg.selectAll('path.line').attr('d', function(d) { return line(d.values); });
-  // }
+  function zoomed() {
+    svg.select(".x.axis").call(xAxis);
+    svg.select(".y.axis").call(yAxis);
+    svg.selectAll('path.line').attr('d', function(d) { return line(d.values); });
+    svg.selectAll(".lineLabel")
+      .attr("transform", function(d) {
+          var val = d.values[d.values.length-1];
+          return "translate(" + x(val.date) + "," + y(val.sentiment) + ")";
+      });
+  }
 }
