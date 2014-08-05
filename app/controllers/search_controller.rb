@@ -22,7 +22,7 @@ class SearchController < ApplicationController
     search_results = Feed.create_news_source_objects(urls, search)
     scores = Search.get_sentiment_scores(search_results)
     Search.save_data_to_db(scores, search, topic)
-    render :json => searched.to_json
+    render :json => scores.to_json
   end
 
   def ticker
