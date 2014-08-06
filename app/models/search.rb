@@ -120,6 +120,7 @@ class Search < ActiveRecord::Base
         searched.histories << history
       end
     end
+    return searched
   end
 
 end
