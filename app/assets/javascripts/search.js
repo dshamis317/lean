@@ -119,47 +119,47 @@ function clearPageData() {
 function automatedSearches() {
   setInterval(function() {
     saveScoresToDB('obama', 11);
-  }, 600000);
+  }, 60000000);
 
   setInterval(function() {
     saveScoresToDB('kardashian', 12);
-  }, 700000)
+  }, 70000000)
 
   setInterval(function() {
     saveScoresToDB('lebron', 15);
-  }, 800000);
+  }, 80000000);
 
   setInterval(function() {
     saveScoresToDB('google', 13);
-  }, 900000)
+  }, 90000000)
 
   setInterval(function() {
     saveScoresToDB('facebook', 13);
-  }, 1000000)
+  }, 100000000)
 
   setInterval(function() {
     saveScoresToDB('gop', 11);
-  }, 1100000);
+  }, 110000000);
 
   setInterval(function() {
     saveScoresToDB('beyonce', 12);
-  }, 1200000)
+  }, 120000000)
 
   setInterval(function() {
     saveScoresToDB('manchester united', 15);
-  }, 1300000);
+  }, 130000000);
 
   setInterval(function() {
     saveScoresToDB('jeter', 15);
-  }, 1400000)
+  }, 140000000)
 
   setInterval(function() {
     saveScoresToDB('twitter', 13);
-  }, 1500000)
+  }, 150000000)
 
   setInterval(function() {
     saveScoresToDB('instagram', 13);
-  }, 1600000)
+  }, 160000000)
 };
 
 function getTickerInfo() {
